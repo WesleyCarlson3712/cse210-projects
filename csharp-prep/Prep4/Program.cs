@@ -14,7 +14,10 @@ class Program
         {
             Console.Write("Enter number: ");
             number = int.Parse(Console.ReadLine());
-            numbers.Add(number);
+            if (number != 0)
+            {
+                numbers.Add(number);
+            }
         }
         while (number != 0);
 
