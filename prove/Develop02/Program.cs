@@ -64,6 +64,8 @@ class Program
         promptGenerator._prompts.Add("What is one thing you are grateful for today?");
         promptGenerator._prompts.Add("What was the highlight of your day?");
         promptGenerator._prompts.Add("What is a challenge you faced today?");
+        promptGenerator._prompts.Add("What is one thing you learned today?");
+        promptGenerator._prompts.Add("What part of today would you do over if you could?");
 
         // Pass the PromptGenerator to the Journal
         Journal journal = new Journal(promptGenerator);

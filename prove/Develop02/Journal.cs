@@ -43,7 +43,6 @@ public class Journal
         {
             Console.WriteLine("File not found.");
         }     
-           
     }
 
     public void SaveFile()
@@ -87,10 +86,15 @@ public class Journal
     {
         // prompts user for response and adds entry to list of entries
         Entry entry = new Entry();
+
         entry._date = DateTime.Now.ToShortDateString();
+
         entry._prompt = _promptGenerator.GetPrompt();
+
         Console.WriteLine(entry._prompt);
+
         entry._response = Console.ReadLine();
+        
         _entries.Add(entry);
     }
 }
