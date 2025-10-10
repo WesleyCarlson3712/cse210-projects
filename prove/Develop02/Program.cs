@@ -3,7 +3,7 @@ using System;
 class Program
 {
     public static void DisplayMenu()
-    {
+    {   
         Console.WriteLine("Select one of the following choices:");
         Console.WriteLine("1. Write");
         Console.WriteLine("2. Display");

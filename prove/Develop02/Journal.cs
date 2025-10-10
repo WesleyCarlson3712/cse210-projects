@@ -34,7 +34,8 @@ public class Journal
                 {
                     _date = parts[0],
                     _prompt = parts[1],
-                    _response = parts[2]
+                    _response = parts[2],
+                    _mood = parts[3]
                 };
                 _entries.Add(entry);
             }
@@ -63,7 +64,7 @@ public class Journal
         {
             foreach (Entry entry in _entries)
             {
-                writer.WriteLine($"{entry._date}|{entry._prompt}|{entry._response}");
+                writer.WriteLine($"{entry._date}|{entry._prompt}|{entry._response}|{entry._mood}");
             }
         }
     }
@@ -86,15 +87,12 @@ public class Journal
     {
         // prompts user for response and adds entry to list of entries
         Entry entry = new Entry();
-
         entry._date = DateTime.Now.ToShortDateString();
-
         entry._prompt = _promptGenerator.GetPrompt();
-
         Console.WriteLine(entry._prompt);
-
         entry._response = Console.ReadLine();
-        
+        Console.WriteLine("What is your current mood?");
+        entry._mood = Console.ReadLine();
         _entries.Add(entry);
     }
 }
