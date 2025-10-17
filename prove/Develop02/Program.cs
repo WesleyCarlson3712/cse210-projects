@@ -1,3 +1,9 @@
+
+// To exceed requirements, I added a field that the user fills out 
+// that tracks their current mood with each journal entry, which is 
+// stored in the entry class and can be saved and loaded.
+
+
 using System;
 
 class Program
