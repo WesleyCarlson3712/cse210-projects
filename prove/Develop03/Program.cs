@@ -2,7 +2,7 @@
 // to be added with a simple string, automatically breaking it down into
 // book, chapter, verse, and end verse if applicable. This makes it easier
 // to add new scriptures to the program without needing to understand the
-// parameters needed by the constructor.
+// parameters needed by the constructor. see lines 16-34 in scripture.cs
 class Program
 {
     public static Scripture GetRandomScripture(List<Scripture> scriptures)
