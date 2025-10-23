@@ -34,27 +34,45 @@ public class Scripture
         }
 
     }
-    // rewrite this method to not hide already hidden words
-    public void HideWords()
+    // public void HideWords()
+    // {
+    //     int wordsToHide = Math.Min(3, _visibleWords.Count);
+    //     for (int i = 0; i < wordsToHide; i++)
+    //     {
+    //         Random rand = new Random();
+    //         int index = rand.Next(_visibleWords.Count);
+    //         _words[index].Hide();
+    //         _visibleWords.RemoveAt(index);
+    //     }
+    // }
+    // the above function doesnt work. i need to hide 3 random words from _words list each time its called without hiding the same word twice
+
+  public void HideWords()
     {
-        for (int i = 0; i < 3; i++)
+        int visibleWordCount = 0;
+        foreach (Word word in _words)
         {
-            Random rand = new Random();
-            int index = rand.Next(_words.Count);
-            if (!IsCompletlyHidden()) {
-                while (_words[index].IsHidden())
-                {
-                    index = rand.Next(_words.Count);
-                }
+            if (!word.IsHidden())
+            {
+                visibleWordCount++;
             }
+        }
+        int wordsToHide = Math.Min(3, visibleWordCount);
+        Random rand = new Random();
+        for (int i = 0; i < wordsToHide; i++)
+        {
+            int index;
+            do
+            {
+                index = rand.Next(_words.Count);
+            } while (_words[index].IsHidden());
             _words[index].Hide();
         }
     }
-    
     public void DisplayScripture()
     {
         Console.Write($"{_reference.GetReferenceString()} ");
-        foreach(Word word in _words)
+        foreach (Word word in _words)
         {
             Console.Write(word.GetWord() + " ");
         }
@@ -62,7 +80,7 @@ public class Scripture
     }
     public bool IsCompletlyHidden()
     {
-        foreach(Word word in _words)
+        foreach (Word word in _words)
         {
             if (!word.IsHidden())
             {
