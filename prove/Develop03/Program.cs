@@ -1,5 +1,8 @@
-using System;
-
+// my program exceeds requrements by allowing scripture references 
+// to be added with a simple string, automatically breaking it down into
+// book, chapter, verse, and end verse if applicable. This makes it easier
+// to add new scriptures to the program without needing to understand the
+// parameters needed by the constructor.
 class Program
 {
     public static Scripture GetRandomScripture(List<Scripture> scriptures)
@@ -29,6 +32,6 @@ class Program
         }
         Console.Clear();
         scripture.DisplayScripture();
-        
+
     }
 }
