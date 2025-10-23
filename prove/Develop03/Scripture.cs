@@ -34,19 +34,6 @@ public class Scripture
         }
 
     }
-    // public void HideWords()
-    // {
-    //     int wordsToHide = Math.Min(3, _visibleWords.Count);
-    //     for (int i = 0; i < wordsToHide; i++)
-    //     {
-    //         Random rand = new Random();
-    //         int index = rand.Next(_visibleWords.Count);
-    //         _words[index].Hide();
-    //         _visibleWords.RemoveAt(index);
-    //     }
-    // }
-    // the above function doesnt work. i need to hide 3 random words from _words list each time its called without hiding the same word twice
-
   public void HideWords()
     {
         int visibleWordCount = 0;
