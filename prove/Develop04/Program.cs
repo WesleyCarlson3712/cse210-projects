@@ -1,3 +1,10 @@
+// to exceed requirements, i made sure that questions can not be chosen multiple times
+// until all questions have been used once for the reflection activity. I also built
+// the main menu to automatically adjust based on the number of activities if more are
+// added, rather than hardcoding each option.
+
+
+
 using System;
 using System.Diagnostics;
 using System.Linq.Expressions;
@@ -53,16 +60,10 @@ public class Program
                 "Who are some of your personal heroes?"
             }
         );
-        // BreathingActivity test = new BreathingActivity("Test", "This is a test");
-        // ListeningActivity test2 = new ListeningActivity("Test2", "This is another test", new List<string> { "Prompt1", "Prompt2" });
-        // ReflectionActivity test3 = new ReflectionActivity("Test3", "This is yet another test", new List<string> { "Prompt1", "Prompt2" }, new List<string> { "Question1", "Question2" });
 
         activities.Add(breathingActivity);
         activities.Add(reflectionActivity);
         activities.Add(listeningActivity);
-        // activities.Add(test);
-        // activities.Add(test2);
-        // activities.Add(test3);
 
         while (true)
         {
@@ -73,7 +74,7 @@ public class Program
             {
                 break;
             }
-
+            
             RunChosenActivity(choice, activities);
         }
     }
