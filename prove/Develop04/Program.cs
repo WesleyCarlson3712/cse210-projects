@@ -53,16 +53,16 @@ public class Program
                 "Who are some of your personal heroes?"
             }
         );
-        BreathingActivity test = new BreathingActivity("Test", "This is a test");
-        ListeningActivity test2 = new ListeningActivity("Test2", "This is another test", new List<string> { "Prompt1", "Prompt2" });
-        ReflectionActivity test3 = new ReflectionActivity("Test3", "This is yet another test", new List<string> { "Prompt1", "Prompt2" }, new List<string> { "Question1", "Question2" });
+        // BreathingActivity test = new BreathingActivity("Test", "This is a test");
+        // ListeningActivity test2 = new ListeningActivity("Test2", "This is another test", new List<string> { "Prompt1", "Prompt2" });
+        // ReflectionActivity test3 = new ReflectionActivity("Test3", "This is yet another test", new List<string> { "Prompt1", "Prompt2" }, new List<string> { "Question1", "Question2" });
 
         activities.Add(breathingActivity);
         activities.Add(reflectionActivity);
         activities.Add(listeningActivity);
-        activities.Add(test);
-        activities.Add(test2);
-        activities.Add(test3);
+        // activities.Add(test);
+        // activities.Add(test2);
+        // activities.Add(test3);
 
         while (true)
         {

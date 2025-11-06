@@ -2,6 +2,7 @@ public class ReflectionActivity : Activity
 {
     private List<string> _prompts;
     private List<string> _questions;
+    private List<int> _unusedQuestionIndexes = new List<int>();
 
     public ReflectionActivity(string name, string description, List<string> prompts, List<string> questions)
         : base(name, description)
@@ -45,7 +46,16 @@ public class ReflectionActivity : Activity
 
     public string GetQuestion()
     {
-        int index = _rand.Next(_questions.Count);
-        return _questions[index];
+        if (_unusedQuestionIndexes.Count == 0)
+        {
+            for (int i = 0; i < _questions.Count; i++)
+            {
+                _unusedQuestionIndexes.Add(i);
+            }
+        }
+        int randomIdx = _rand.Next(_unusedQuestionIndexes.Count);
+        int questionIdx = _unusedQuestionIndexes[randomIdx];
+        _unusedQuestionIndexes.RemoveAt(randomIdx);
+        return _questions[questionIdx];
     }
 }

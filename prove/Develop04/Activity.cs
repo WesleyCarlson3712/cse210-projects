@@ -32,7 +32,7 @@ public abstract class Activity
         Timer(5);
     }
 
-    public double getDuration()
+    public int getDuration()
     {
         Console.WriteLine("How long, in seconds, would you like for your session?");
         while (true)
@@ -40,7 +40,7 @@ public abstract class Activity
             try
             {
                 string choice = Console.ReadLine();
-                double number = double.Parse(choice);
+                int number = int.Parse(choice);
                 if (number > 0)
                 {
                     return number;
