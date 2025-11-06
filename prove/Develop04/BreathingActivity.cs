@@ -17,10 +17,10 @@ public class BreathingActivity : Activity
         while (DateTime.Now < endTime)
         {
             Console.Write("Breathe in... ");
-            Countdown(_rand.Next(4, 7));
+            Countdown(_rand.Next(4, 6));
             Console.WriteLine();
             Console.Write("Breathe out... ");
-            Countdown(_rand.Next(4, 7));
+            Countdown(_rand.Next(4, 5));
             Console.WriteLine();
             Console.WriteLine();
         }

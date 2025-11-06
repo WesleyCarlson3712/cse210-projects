@@ -20,6 +20,7 @@ public class ListeningActivity : Activity
         Console.WriteLine($" --- {GetPrompt()} --- ");
         Console.Write("You may begin in: ");
         Timer(5);
+        Console.WriteLine();
         DateTime endTime = DateTime.Now.AddSeconds(duration);
         int count = 0;
         while (DateTime.Now < endTime)

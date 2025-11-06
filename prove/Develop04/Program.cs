@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using System.Linq.Expressions;
 
 public class Program
 {
@@ -27,14 +29,21 @@ public class Program
             new List<string>
             {
                 "Why was this experience meaningful to you?",
-                "How can you apply what you learned from this experience " +
-                "in the future?"
+                "Have you ever done anything like this before?",
+                "How did you get started?",
+                "How did you feel when it was complete?",
+                "What made this time different than other times when you were not as successful?",
+                "What is your favorite thing about this experience?",
+                "What could you learn from this experience that applies to other situations?",
+                "What did you learn about yourself through this experience?",
+                "How can you keep this experience in mind in the future?"
             }
         );
 
         ListeningActivity listeningActivity = new ListeningActivity(
             "Listening Activity",
-            "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area",
+            "This activity will help you reflect on the good things in your life by having " +
+            "you list as many things as you can in a certain area",
             new List<string>
             {
                 "Who are people that you appreciate?",
@@ -44,17 +53,23 @@ public class Program
                 "Who are some of your personal heroes?"
             }
         );
+        BreathingActivity test = new BreathingActivity("Test", "This is a test");
+        ListeningActivity test2 = new ListeningActivity("Test2", "This is another test", new List<string> { "Prompt1", "Prompt2" });
+        ReflectionActivity test3 = new ReflectionActivity("Test3", "This is yet another test", new List<string> { "Prompt1", "Prompt2" }, new List<string> { "Question1", "Question2" });
 
         activities.Add(breathingActivity);
         activities.Add(reflectionActivity);
         activities.Add(listeningActivity);
+        activities.Add(test);
+        activities.Add(test2);
+        activities.Add(test3);
 
         while (true)
         {
-            DisplayMenu();
-            int choice = GetChoice(1, 4);
+            DisplayMenu(activities);
+            int choice = GetChoice(1, activities.Count + 1);
 
-            if (choice == 4)
+            if (choice == activities.Count + 1)
             {
                 break;
             }
@@ -63,13 +78,13 @@ public class Program
         }
     }
 
-    public static void DisplayMenu()
+    public static void DisplayMenu(List<Activity> activities)
     {
-        Console.WriteLine("Select one of the following choices:");
-        Console.WriteLine("1. Breathing Activity");
-        Console.WriteLine("2. Reflection Activity");
-        Console.WriteLine("3. Listening Activity");
-        Console.WriteLine("4. Quit");
+        for(int i = 0; i < activities.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {activities[i].GetName()}");
+        }
+        Console.WriteLine($"{activities.Count + 1}. Quit");
         Console.Write("What would you like to do? ");
     }
 
@@ -88,6 +103,14 @@ public class Program
                 Console.WriteLine($"Invalid option. Enter a number {min} - {max}.");
             }
             catch (FormatException)
+            {
+                Console.WriteLine($"Invalid option. Enter a number {min} - {max}.");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine($"Invalid option. Enter a number {min} - {max}.");
+            }
+            catch (ArgumentNullException)
             {
                 Console.WriteLine($"Invalid option. Enter a number {min} - {max}.");
             }

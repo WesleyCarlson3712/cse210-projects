@@ -35,7 +35,6 @@ public class ReflectionActivity : Activity
         }
         DisplayEndingMessage(duration);
         Console.Clear();
-    
     }
 
     public string GetPrompt()

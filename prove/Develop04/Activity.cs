@@ -13,7 +13,11 @@ public abstract class Activity
 
     public abstract void RunActivity();
 
-    
+    public string GetName()
+    {
+        return _name;
+    }
+
     public void DisplayStartingMessage()
     {
         Console.WriteLine($"Welciome to the {_name}.\n");
@@ -44,6 +48,14 @@ public abstract class Activity
                 Console.WriteLine($"Invalid duration");
             }
             catch (FormatException)
+            {
+                Console.WriteLine($"Invalid duration");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine($"Invalid duration");
+            }
+            catch (ArgumentNullException)
             {
                 Console.WriteLine($"Invalid duration");
             }
