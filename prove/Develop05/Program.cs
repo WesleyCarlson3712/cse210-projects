@@ -1,3 +1,7 @@
+// to exceed requirements, i added a rank system where your rank increases as you gain points.
+// since rank depends on points, there is no need to save it to a file, though it is initiated
+// within the load function when points are updated
+
 public class Program
 {
 
@@ -68,7 +72,7 @@ public class Program
                 Save(goals, points); 
                 break;
             case 4: 
-                Load(goals, points); 
+                Load(goals, ref points, ref rank); 
                 break;
             case 5: 
                 RecordEvent(goals, ref points, ref rank); 
@@ -163,7 +167,7 @@ public class Program
         }
     }
 
-    public static void Load(List<Goal> goals, int points)
+    public static void Load(List<Goal> goals, ref int points, ref int rank)
     {
         Console.WriteLine("Enter filename to load goals: ");
         string filename = Console.ReadLine();
@@ -178,6 +182,7 @@ public class Program
             string[] lines = File.ReadAllLines(filename);
             goals.Clear();
             points = int.Parse(lines[0]);
+            rank = Math.Min(points / 100, 9);
 
             for (int i = 1; i < lines.Length; i++)
             {
