@@ -12,7 +12,7 @@ public class EternalGoal : Goal
 
     public override bool IsComplete()
     {
-        return false; // Eternal goals never complete
+        return false; 
     }
     public override string ToDataString()
     {
