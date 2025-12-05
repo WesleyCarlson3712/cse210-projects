@@ -17,14 +17,18 @@ public class HelperFunctions
         while(true)
         {
             int choice;
-            if(int.TryParse(Console.ReadLine(), out choice))
+            Console.Write("> ");
+            if(int.TryParse(Console.ReadLine(), out choice)) 
             {
                 if(min <= choice && choice <= max)
                 {
                     return choice;
                 }
             }
-            Console.WriteLine($"Invalid input.");
+            int top = Console.CursorTop;
+            if (top > 0)
+                Console.SetCursorPosition(0, top - 1);
+            Console.Write(new string(' ', Console.WindowWidth) + "\r");
         }
     }
 }

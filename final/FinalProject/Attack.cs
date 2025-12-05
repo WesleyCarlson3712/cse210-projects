@@ -7,36 +7,67 @@ public class Attack
     private int _damageMax;
     private double _critChance;
     private double _critMultiplier;
-    private string _specialEffect;
-    private bool _alwaysHits;
+    private double _accuracyMod;
+    private double _resistanceMod;
+    private int _stunDuration;
+    private double _stunChance;
+    private bool _onCooldown;
 
 
-    public Attack(string name, int damageMin, int damageMax, double critChance, double critMultiplier, string specialEffect, bool alwaysHits = false)
+    public Attack(string name, int damageMin, int damageMax, double critChance, double critMultiplier, double accuracyMod = 0, double resistanceMod = 0, int stunDuration = 0, double stunChance = 1)
     {
         _name = name;
         _damageMin = damageMin;
         _damageMax = damageMax;
         _critChance = critChance;
         _critMultiplier = critMultiplier;
-        _specialEffect = specialEffect;
-        _alwaysHits = alwaysHits;
+        _accuracyMod = accuracyMod;
+        _resistanceMod = resistanceMod;
+        _stunDuration = stunDuration;
+        _stunChance = stunChance;
+        _onCooldown = false;
     }
     public string GetName()
     {
         return _name;
     }
-    public void Execute(Character attacker, Character target)
+    public void ToggleCooldown()
     {
-        if(_alwaysHits || HelperFunctions.GetRandDouble() > target.GetEvasion())
+        _onCooldown = !_onCooldown;
+    }
+    public bool IsOnCooldown()
+    {
+        return _onCooldown;
+    }
+    public List<string> Execute(Character attacker, Character target)
+    {
+        List<string> battleUpdates = new List<string>();
+
+        battleUpdates.Add($"{attacker.GetName()} uses {_name} on {target.GetName()}");
+
+        if(HelperFunctions.GetRandDouble() > target.GetEvasion() - _accuracyMod)
         {
             int damage = HelperFunctions.GetRandInt(_damageMin, _damageMax);
             if(HelperFunctions.GetRandDouble() <= _critChance)
             {
-                damage += (int)Math.Round(damage * _critMultiplier);
-                Console.WriteLine($"damage in attack is {damage}");
+                damage = (int)Math.Round(damage * _critMultiplier);
+
+                battleUpdates.Add("Critical hit");
             }
-            target.TakeDamage(damage);
+            battleUpdates.AddRange(target.TakeDamage(damage, _resistanceMod));
+
+
+            if(HelperFunctions.GetRandDouble() <= _stunChance)
+            {
+                target.SetStun(target.GetStun() + _stunDuration);
+            }
         }
+        else
+        {
+            battleUpdates.Add($"{attacker.GetName()}'s {_name} missed");
+        }
+        return battleUpdates;
+        
     }
 }
 

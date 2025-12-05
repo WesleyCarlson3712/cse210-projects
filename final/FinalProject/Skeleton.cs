@@ -1,15 +1,16 @@
 public class Skeleton : Character
 {
-    public Skeleton() : base("Skeleton", 85, 12, 0.05)
+    public Skeleton() : base("Skeleton", 1200, 0.3, 0.1)
     {
-        _attacks.Add(new Attack("Bone Smash", 20, 20, 0.1, 1.6, null));
-        _attacks.Add(new Attack("Rattle Strike", 15, 15, 0.15, 1.4, null));
-        _attacks.Add(new Attack("Piercing Jab", 18, 18, 0.1, 1.7, null));
+        _attacks.Add(new Attack("Boner Smash", 80, 180, 0.1, 1.5));
+        _attacks.Add(new Attack("Rattle Strike", 50, 100, 0.1, 3, 1, 1));
+        _attacks.Add(new Attack("Skull Slam", 100, 120, 0.3, 2, 0, 0, 1, 0.3));
+        _specialName = "Gaster Blaster";
     }
 
-    public override void UseSpecialAbility(Character target)
+    public override List<string> UseSpecialAbility(Character target)
     {
-        Console.WriteLine($"{_name} raises its guard!");
+        return PerformAttack(target, new Attack(_specialName, 200, 200, 1, 2, 1, 1));
     }
 }
 

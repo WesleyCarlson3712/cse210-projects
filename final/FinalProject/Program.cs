@@ -44,7 +44,8 @@ public class Program
                     enemy = new Ghoul();
                     break;
             }
-
+            
+            Console.Clear();
             BattleManager battle = new BattleManager(player, enemy);
             battle.StartBattle();
         }
